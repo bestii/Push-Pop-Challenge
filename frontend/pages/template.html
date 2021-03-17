@@ -1,21 +1,35 @@
 <main class="container mx-auto mt-20 sm:px-0 px-5">
-  <status-bar :resolvedPercent="'35%'" :unresolvedPercent="'35%'" :backlogPercent="'30%'" />
-  <div>
-    Resolved:
-    <div v-for="error in resolved" :key="error.index">
-      `{{ error.code }}` - {{ error.text }}
+  <status-bar :resolvedPercent="resolvedPercent" :unresolvedPercent="unresolvedPercent"
+    :backlogPercent="backlogPercent" />
+  <div id="tabs" class="mt-5">
+    <div class="tabs">
+      <a class="resolved float-left mr-16" v-on:click="activetab = 1" v-bind:class="[activetab === 1 ? 'active' : '']">
+        <span class="text-6xl text-green-600">{{ resolvedLen }}</span>
+        <span class="font-bold">Resolved</span>
+      </a>
+      <a class="unresolved float-left mr-16" v-on:click="activetab = 2"
+        v-bind:class="[activetab === 2 ? 'active' : '']">
+        <span class="text-6xl text-red-600">{{ unresolvedLen }}</span>
+        <span class="font-bold">Unresolved</span>
+      </a>
+      <a class="backlog float-left mr-16" v-on:click="activetab = 3" v-bind:class="[activetab === 3 ? 'active' : '']">
+        <span class="text-6xl text-gray-400">{{ backlogLen }}</span>
+        <span class="font-bold">Backlog</span>
+      </a>
     </div>
-  </div>
-  <div>
-    Unresolved:
-    <div v-for="error in unresolved" :key="error.index">
-      `{{ error.code }}` - {{ error.text }}
-    </div>
-  </div>
-  <div>
-    Backlog:
-    <div v-for="error in backlog" :key="error.index">
-      `{{ error.code }}` - {{ error.text }}
+    <div class="content mt-3">
+      <div v-if="activetab === 1" class="tabcontent inline-block min-w-full shadow rounded-lg overflow-hidden border">
+        <list-table :listItems="sortedResolved" :btnText="'Unresolve'" :listType="LIST_RESOLVED"
+          @moveTickets="moveTickets($event)" />
+      </div>
+      <div v-if="activetab === 2" class="tabcontent inline-block min-w-full shadow rounded-lg overflow-hidden border">
+        <list-table :listItems="sortedUnresolved" :btnText="'Resolve'" :listType="LIST_UNRESOLVED"
+          @moveTickets="moveTickets($event)" />
+      </div>
+      <div v-if="activetab === 3" class="tabcontent inline-block min-w-full shadow rounded-lg overflow-hidden border">
+        <list-table :listItems="sortedbacklog" :btnText="'Unresolve'" :listType="LIST_BACKLOG"
+          @moveTickets="moveTickets($event)" />
+      </div>
     </div>
   </div>
 </main>

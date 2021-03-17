@@ -1,0 +1,26 @@
+/* Style the tabs */
+.tabs {
+  overflow: hidden;
+}
+
+.tabs a {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Styling for active tab */
+.tabs a.active {
+  cursor: default;
+}
+
+.tabs a.active.resolved {
+  border-bottom: 5px solid #38a169;
+}
+
+.tabs a.active.unresolved {
+  border-bottom: 5px solid #e53e3e;
+}
+
+.tabs a.active.backlog {
+  border-bottom: 5px solid #cbd5e0;
+}
