@@ -1,24 +1,2 @@
-<template>
-  <main class="pt-20">
-    <div>
-      Resolved:
-      <div v-for="error in resolved" :key="error.index">
-        `{{ error.code }}` - {{ error.text }}
-      </div>
-    </div>
-    <div>
-      Unresolved:
-      <div v-for="error in unresolved" :key="error.index">
-        `{{ error.code }}` - {{ error.text }}
-      </div>
-    </div>
-    <div>
-      Backlog:
-      <div v-for="error in backlog" :key="error.index">
-        `{{ error.code }}` - {{ error.text }}
-      </div>
-    </div>
-  </main>
-</template>
-
+<template src="./template.html"></template>
 <script src="./script.js"></script>
