@@ -1,5 +1,5 @@
 <template>
-  <table class="min-w-full leading-normal">
+  <table class="min-w-full leading-normal list-table">
     <thead>
       <tr class="border-b-2 border-gray-300">
         <th
@@ -68,4 +68,8 @@ export default {
 </script>
 
 <style>
+.list-table > tbody > tr:last-child {
+  border-bottom: none;
+}
+
 </style>
