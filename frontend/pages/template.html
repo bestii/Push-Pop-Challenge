@@ -1,4 +1,5 @@
 <main class="container mx-auto pt-20 ">
+  <status-bar :resolvedPercent="'35%'" :unresolvedPercent="'35%'" :backlogPercent="'30%'" />
   <div>
     Resolved:
     <div v-for="error in resolved" :key="error.index">

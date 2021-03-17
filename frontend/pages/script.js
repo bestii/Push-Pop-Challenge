@@ -1,4 +1,16 @@
+import listTable from '../components/ListTable';
+import StatusBar from '../components/StatusBar';
+import {
+  LIST_BACKLOG,
+  LIST_RESOLVED,
+  LIST_UNRESOLVED,
+} from "../constants/constants";
+
 export default {
+  components: {
+    listTable,
+    StatusBar
+  },
   async asyncData({
     $axios
   }) {
@@ -31,6 +43,9 @@ export default {
       resolved: [],
       unresolved: [],
       backlog: [],
+      LIST_BACKLOG,
+      LIST_RESOLVED,
+      LIST_UNRESOLVED,
     };
   },
 };
