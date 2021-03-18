@@ -69,27 +69,6 @@ export default {
         resolvedPercent: ((resolvedLen / totalTickets * 100).toFixed(2) + '%')
       })
     },
-    resolvedLen: function () {
-      return this.resolved.length;
-    },
-    unresolvedLen: function () {
-      return this.unresolved.length;
-    },
-    backlogLen: function () {
-      return this.backlog.length;
-    },
-    totalTickets: function () {
-      return (this.backlogLen + this.unresolvedLen + this.resolvedLen);
-    },
-    backlogPercent: function () {
-      return ((this.backlogLen / this.totalTickets * 100).toFixed(2) + '%');
-    },
-    unresolvedPercent: function () {
-      return ((this.unresolvedLen / this.totalTickets * 100).toFixed(2) + '%');
-    },
-    resolvedPercent: function () {
-      return ((this.resolvedLen / this.totalTickets * 100).toFixed(2) + '%');
-    },
     sortedResolved: function () {
       return this.resolved.sort((a, b) => {
         if (a.code < b.code) return -1;

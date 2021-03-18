@@ -14,8 +14,7 @@
       </button>
     </div>
   </div>
-  <status-bar :resolvedPercent="resolvedPercent" :unresolvedPercent="unresolvedPercent"
-    :backlogPercent="backlogPercent" />
+  <status-bar :ticketData="ticketData" />
   <div id="tabs" class="mt-5">
     <div class="tabs">
       <a class="resolved float-left mr-16" v-on:click="activetab = 1" v-bind:class="[activetab === 1 ? 'active' : '']">
