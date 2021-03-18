@@ -8,16 +8,15 @@
   <status-bar :ticketData="ticketData" />
   <div id="tabs" class="mt-5">
     <div class="tabs">
-      <a class="resolved float-left mr-16" v-on:click="activetab = 1" v-bind:class="[activetab === 1 ? 'active' : '']">
+      <a class="resolved float-left mr-16" @click="activetab = 1" :class="[activetab === 1 ? 'active' : '']">
         <span class="text-6xl text-green-600">{{ ticketData.resolvedLen }}</span>
         <span class="font-bold">Resolved</span>
       </a>
-      <a class="unresolved float-left mr-16" v-on:click="activetab = 2"
-        v-bind:class="[activetab === 2 ? 'active' : '']">
+      <a class="unresolved float-left mr-16" @click="activetab = 2" :class="[activetab === 2 ? 'active' : '']">
         <span class="text-6xl text-red-600">{{ ticketData.unresolvedLen }}</span>
         <span class="font-bold">Unresolved</span>
       </a>
-      <a class="backlog float-left mr-16" v-on:click="activetab = 3" v-bind:class="[activetab === 3 ? 'active' : '']">
+      <a class="backlog float-left mr-16" @click="activetab = 3" :class="[activetab === 3 ? 'active' : '']">
         <span class="text-6xl text-gray-400">{{ ticketData.backlogLen }}</span>
         <span class="font-bold">Backlog</span>
       </a>
