@@ -96,25 +96,30 @@ export default {
     }
   },
   methods: {
-    moveTickets(ticket) {
+    moveTickets(ticket, logging = 1) {
       console.log(ticket);
+      let final_list;
       switch (ticket.type) {
         case this.LIST_RESOLVED:
-          this.createLog(Date.now(), this.LIST_RESOLVED, this.LIST_UNRESOLVED, ticket.item, ticket.item.code);
+          final_list = this.LIST_UNRESOLVED;
           this.resolved = this.resolved.filter(item => item.code != ticket.item.code);
           this.unresolved.push(ticket.item);
           break;
         case this.LIST_UNRESOLVED:
-          this.createLog(Date.now(), this.LIST_UNRESOLVED, this.LIST_RESOLVED, ticket.item, ticket.item.code);
+          final_list = this.LIST_RESOLVED;
           this.unresolved = this.unresolved.filter(item => item.code != ticket.item.code);
           this.resolved.push(ticket.item);
           break;
         case this.LIST_BACKLOG:
-          this.createLog(Date.now(), this.LIST_BACKLOG, this.LIST_UNRESOLVED, ticket.item, ticket.item.code);
+          final_list = this.LIST_UNRESOLVED;
           this.backlog = this.backlog.filter(item => item.code != ticket.item.code);
           this.unresolved.push(ticket.item);
           break;
       }
+      if (logging) {
+        this.createLog(Date.now(), ticket.type, final_list, ticket.item, ticket.item.code);
+      }
+
     },
     createLog(time_stamp, initial_list, final_list, item, code) {
 
@@ -129,12 +134,14 @@ export default {
       this.logArray.push(log)
     },
     undoChange() {
-      const log = this.logArray.pop();
-      const ticket = {
-        type: log.final_list,
-        item: log.item
+      if (this.logArray.length) {
+        const log = this.logArray.pop();
+        const ticket = {
+          type: log.final_list,
+          item: log.item
+        }
+        this.moveTickets(ticket, 0);
       }
-      this.moveTickets(ticket);
     }
   },
 };
