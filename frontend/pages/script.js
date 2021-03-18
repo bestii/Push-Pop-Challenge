@@ -1,5 +1,6 @@
 import listTable from '../components/ListTable';
 import StatusBar from '../components/StatusBar';
+import UndoBtn from '../components/UndoBtn';
 import {
   LIST_BACKLOG,
   LIST_RESOLVED,
@@ -10,7 +11,8 @@ import {
 export default {
   components: {
     listTable,
-    StatusBar
+    StatusBar,
+    UndoBtn
   },
   async asyncData({
     $axios
@@ -134,6 +136,7 @@ export default {
       this.logArray.push(log)
     },
     undoChange() {
+      console.log("called");
       if (this.logArray.length) {
         const log = this.logArray.pop();
         const ticket = {
