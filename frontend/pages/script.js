@@ -1,3 +1,4 @@
+// Imports
 import listTable from '../components/ListTable';
 import StatusBar from '../components/StatusBar';
 import UndoBtn from '../components/UndoBtn';
@@ -10,6 +11,7 @@ import {
 
 export default {
   components: {
+    // Components used in the page
     listTable,
     StatusBar,
     UndoBtn
@@ -20,9 +22,10 @@ export default {
     try {
       const response = await $axios.$get(
         //const { resolved, unresolved, backlog } = await $axios.$get(
-        "https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list"
-        //"http://localhost:3000/data.json"
         //"http://localhost:8000/get_lists"
+        "https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list" //Mock API to deliver the data
+        //"http://localhost:3000/data.json"
+
       );
       const resolved = response[0].resolved;
       const unresolved = response[0].unresolved;
@@ -43,16 +46,23 @@ export default {
   },
   data() {
     return {
+      // Array of Resolved tickets
       resolved: [],
+      // Array of Unresolved tickets
       unresolved: [],
+      // Array of Backlog tickets
       backlog: [],
+      /* 
+        Array that maintains the log for the UNDO operation
+        Format: {time_stamp, initial_list, final_list, item, code} 
+      */
+      logArray: [],
+      // Constant variables imported from constants.js
       activetab: 1,
       LIST_BACKLOG,
       LIST_RESOLVED,
       LIST_UNRESOLVED,
       LIST_UNDOBACKLOG,
-      //{time_stamp, initial_list, final_list, item, code}
-      logArray: [],
     };
   },
   computed: {
