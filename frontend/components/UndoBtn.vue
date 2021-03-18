@@ -1,27 +1,26 @@
-<template >
+<template>
   <button
     class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 hover:border-transparent rounded disabled:opacity-50"
     :disabled="btnDisabled"
     @click="undo"
   >
     <svg
-      version="1.1"
-      id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.1"
       x="0px"
       y="0px"
-      viewBox="0 0 512 512"
-      enable-background="new 0 0 512 512"
+      viewBox="0 0 85.715 125"
       xml:space="preserve"
-      width="24"
-      class="fill-current"
+      width="16"
+      class="fill-current inline-block"
     >
       <path
-        d="M374.2,189.2H157.5L275.7,71.1H157.5L0,228.6l157.5,157.5h118.2L157.5,268h216.6c32.6,0,59.1,26.4,59.1,59.1
-	c0,32.6-26.4,59.1-59.1,59.1v78.8c76.1,0,137.8-61.7,137.8-137.8C512,250.9,450.3,189.2,374.2,189.2z"
+        style=""
+        d="M71.429,57.143c0,15.765-12.808,28.572-28.571,28.572c-15.765,0-28.572-12.808-28.572-28.572  c0-15.764,12.808-28.571,28.572-28.571l14.369,0.153v14.202l21.471-21.498L57.227,0v14.285H42.857C19.196,14.285,0,33.482,0,57.143  C0,80.804,19.196,100,42.857,100c23.66,0,42.857-19.196,42.857-42.857H71.429z"
       />
     </svg>
+    <span>UNDO</span>
   </button>
 </template>
 <script>
@@ -40,4 +39,3 @@ export default {
   },
 };
 </script>
-<style></style>
