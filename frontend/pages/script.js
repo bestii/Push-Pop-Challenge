@@ -54,6 +54,21 @@ export default {
     };
   },
   computed: {
+    ticketData: function () {
+      let resolvedLen = this.resolved.length;
+      let unresolvedLen = this.unresolved.length;
+      let backlogLen = this.backlog.length;
+      let totalTickets = (backlogLen + unresolvedLen + resolvedLen);
+      return ({
+        resolvedLen,
+        unresolvedLen,
+        backlogLen,
+        totalTickets,
+        backlogPercent: ((backlogLen / totalTickets * 100).toFixed(2) + '%'),
+        unresolvedPercent: ((unresolvedLen / totalTickets * 100).toFixed(2) + '%'),
+        resolvedPercent: ((resolvedLen / totalTickets * 100).toFixed(2) + '%')
+      })
+    },
     resolvedLen: function () {
       return this.resolved.length;
     },
