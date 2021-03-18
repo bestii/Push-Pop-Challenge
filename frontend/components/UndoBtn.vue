@@ -1,6 +1,6 @@
 <template>
   <button
-    class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 hover:border-transparent rounded disabled:opacity-50"
+    class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-2 border border-red-500 hover:border-transparent rounded disabled:opacity-50"
     :disabled="btnDisabled"
     @click="undo"
   >
