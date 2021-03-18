@@ -4,6 +4,7 @@ import {
   LIST_BACKLOG,
   LIST_RESOLVED,
   LIST_UNRESOLVED,
+  LIST_UNDOBACKLOG
 } from "../constants/constants";
 
 export default {
@@ -47,6 +48,7 @@ export default {
       LIST_BACKLOG,
       LIST_RESOLVED,
       LIST_UNRESOLVED,
+      LIST_UNDOBACKLOG,
       //{time_stamp, initial_list, final_list, item, code}
       logArray: [],
     };
@@ -115,14 +117,18 @@ export default {
           this.backlog = this.backlog.filter(item => item.code != ticket.item.code);
           this.unresolved.push(ticket.item);
           break;
+        case this.LIST_UNDOBACKLOG:
+          this.unresolved = this.unresolved.filter(item => item.code != ticket.item.code);
+          this.backlog.push(ticket.item);
+          break;
       }
-      if (logging) {
+      if (logging && ticket.type != this.LIST_UNDOBACKLOG) {
         this.createLog(Date.now(), ticket.type, final_list, ticket.item, ticket.item.code);
       }
 
     },
     createLog(time_stamp, initial_list, final_list, item, code) {
-
+      final_list = initial_list == this.LIST_BACKLOG ? this.LIST_UNDOBACKLOG : final_list;
       const log = {
         time_stamp,
         initial_list,
