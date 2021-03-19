@@ -23,7 +23,7 @@ export default {
       const response = await $axios.$get(
         //const { resolved, unresolved, backlog } = await $axios.$get(
         //"http://localhost:8000/get_lists"
-        "https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list" //Mock API to deliver the data
+        "https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list" // Mock API to deliver the data.
         //"http://localhost:3000/data.json"
 
       );
@@ -46,11 +46,11 @@ export default {
   },
   data() {
     return {
-      // Array of Resolved tickets
+      // Array of Resolved tickets.
       resolved: [],
-      // Array of Unresolved tickets
+      // Array of Unresolved tickets.
       unresolved: [],
-      // Array of Backlog tickets
+      // Array of Backlog tickets.
       backlog: [],
       /* 
         Array that maintains the log for the UNDO operation
@@ -68,7 +68,7 @@ export default {
   computed: {
     /* 
       Name: ticketData
-      Description: Contains information about the tickets
+      Description: Contains information about the tickets.
       type: Object
       {
         resolvedLen: # of resolved tickets
@@ -95,7 +95,7 @@ export default {
         resolvedPercent: ((resolvedLen / totalTickets * 100).toFixed(2) + '%')
       })
     },
-    /* sortedResolved contains the resolved tickets in sorted order */
+    /* sortedResolved contains the resolved tickets in sorted order. */
     sortedResolved: function () {
       return this.resolved.sort((a, b) => {
         if (a.code < b.code) return -1;
@@ -103,7 +103,7 @@ export default {
         return 0;
       });
     },
-    /* sortedUnresolved contains the unresolved tickets in sorted order */
+    /* sortedUnresolved contains the unresolved tickets in sorted order. */
     sortedUnresolved: function () {
       return this.unresolved.sort((a, b) => {
         if (a.code < b.code) return -1;
@@ -111,7 +111,7 @@ export default {
         return 0;
       });
     },
-    /* sortedbacklog contains the backlog tickets in sorted order */
+    /* sortedbacklog contains the backlog tickets in sorted order. */
     sortedbacklog: function () {
       return this.backlog.sort((a, b) => {
         if (a.code < b.code) return -1;
@@ -123,7 +123,7 @@ export default {
   methods: {
     /* 
       Name: moveTickets
-      Description: function to perform the move opertaion between (resolved, unresolved, backlog)
+      Description: function to perform the move opertaion between (resolved, unresolved, backlog).
       @param(ticket): The ticket to be moved
       @param(logging): Boolean that denotes if the action needs to be logged.
     */
@@ -158,7 +158,7 @@ export default {
     },
     /* 
       Name: createLog
-      Description: function to create a log for the move opertion
+      Description: function to create a log for the move opertion.
       @param(time_stamp): Timestamp of the operation
       @param(initial_list): Initial list of the ticket
       @param(final_list): List to which the ticket is moved
@@ -179,7 +179,7 @@ export default {
     },
     /* 
       Name: undoChange
-      Description: function to perform the undo of the previous change
+      Description: function to perform the undo of the previous change.
     */
     undoChange() {
       if (this.logArray.length) {

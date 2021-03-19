@@ -26,13 +26,16 @@
 <script>
 export default {
   name: "UndoBtn",
+  // props passed to the component.
   props: {
+    // Boolean variable to disable the undo button.
     btnDisabled: {
       required: true,
       type: Boolean,
     },
   },
   methods: {
+    // Method to handle the undo button click.
     undo() {
       this.$emit("undo");
     },

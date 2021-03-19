@@ -56,22 +56,28 @@
 <script>
 export default {
   name: "listTable",
+  // props passed to this component.
   props: {
+    // The list to be displayed.
     listItems: {
       type: Array,
       required: true,
     },
+    // Display test of the button.
     btnText: {
       type: String,
       required: true,
     },
+    // Type of the list(resolved, unresolved, backlog).
     listType: {
       type: String,
       required: true,
     },
   },
   methods: {
+    // Method to handle the button click.
     changeType(item) {
+      // Propagate event to parent component.
       this.$emit("moveTickets", { type: this.listType, item });
     },
   },
@@ -82,5 +88,4 @@ export default {
 .list-table > tbody > tr:last-child {
   border-bottom: none;
 }
-
 </style>

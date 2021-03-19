@@ -22,7 +22,9 @@
 <script>
 export default {
   name: "StatusBar",
+  // props passed to the component.
   props: {
+    // Contains information about all the type of tickets.
     ticketData: {
       type: Object,
       required: true,
