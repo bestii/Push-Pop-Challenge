@@ -2,9 +2,9 @@
 
 This is the frontend for the coding challenge. We use VueJS/NuxtJS as a JS framework. We use tailwind CSS for CSS styling.
 
-- VueJS: https://vuejs.org/v2/guide/
-- NuxtJS: https://nuxtjs.org/guide/
-- Tailwind CSS: https://tailwindcss.com/
+- VueJS: <https://vuejs.org/v2/guide/>
+- NuxtJS: <https://nuxtjs.org/guide/>
+- Tailwind CSS: <https://tailwindcss.com/>
 
 To start the frontend, run:
 

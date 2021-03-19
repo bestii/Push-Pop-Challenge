@@ -66,6 +66,20 @@ export default {
     };
   },
   computed: {
+    /* 
+      Name: ticketData
+      Description: Contains information about the tickets
+      type: Object
+      {
+        resolvedLen: # of resolved tickets
+        unresolvedLen: # of unresolved tickets
+        backlogLen: # of backlog tickets
+        totalTickets: Total # of tickets
+        backlogPercent: % of resolved tickets
+        unresolvedPercent: % of resolved tickets
+        resolvedPercent: % of resolved tickets
+      }
+    */
     ticketData: function () {
       let resolvedLen = this.resolved.length;
       let unresolvedLen = this.unresolved.length;
@@ -81,6 +95,7 @@ export default {
         resolvedPercent: ((resolvedLen / totalTickets * 100).toFixed(2) + '%')
       })
     },
+    /* sortedResolved contains the resolved tickets in sorted order */
     sortedResolved: function () {
       return this.resolved.sort((a, b) => {
         if (a.code < b.code) return -1;
@@ -88,6 +103,7 @@ export default {
         return 0;
       });
     },
+    /* sortedUnresolved contains the unresolved tickets in sorted order */
     sortedUnresolved: function () {
       return this.unresolved.sort((a, b) => {
         if (a.code < b.code) return -1;
@@ -95,6 +111,7 @@ export default {
         return 0;
       });
     },
+    /* sortedbacklog contains the backlog tickets in sorted order */
     sortedbacklog: function () {
       return this.backlog.sort((a, b) => {
         if (a.code < b.code) return -1;
@@ -104,7 +121,13 @@ export default {
     }
   },
   methods: {
-    moveTickets(ticket, logging = 1) {
+    /* 
+      Name: moveTickets
+      Description: function to perform the move opertaion between (resolved, unresolved, backlog)
+      @param(ticket): The ticket to be moved
+      @param(logging): Boolean that denotes if the action needs to be logged.
+    */
+    moveTickets(ticket, logging = true) {
       console.log(ticket);
       let final_list;
       switch (ticket.type) {
@@ -133,6 +156,15 @@ export default {
       }
 
     },
+    /* 
+      Name: createLog
+      Description: function to create a log for the move opertion
+      @param(time_stamp): Timestamp of the operation
+      @param(initial_list): Initial list of the ticket
+      @param(final_list): List to which the ticket is moved
+      @param(item): Ticket object
+      @param(code): Key of the ticket
+    */
     createLog(time_stamp, initial_list, final_list, item, code) {
       final_list = initial_list == this.LIST_BACKLOG ? this.LIST_UNDOBACKLOG : final_list;
       const log = {
@@ -145,15 +177,18 @@ export default {
       this.logArray.pop();
       this.logArray.push(log)
     },
+    /* 
+      Name: undoChange
+      Description: function to perform the undo of the previous change
+    */
     undoChange() {
-      console.log("called");
       if (this.logArray.length) {
         const log = this.logArray.pop();
         const ticket = {
           type: log.final_list,
           item: log.item
         }
-        this.moveTickets(ticket, 0);
+        this.moveTickets(ticket, false);
       }
     }
   },
