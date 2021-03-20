@@ -20,6 +20,7 @@
       class="flex-shrink-0 h-5 w-5 text-gray-400 cursor-pointer"
       stroke="currentColor"
       viewBox="0 0 20 20"
+      @click="triggerRemove(notification)"
     >
       <path
         stroke-width="1.2"
@@ -32,6 +33,25 @@
 export default {
   name: "NotificationElement",
   props: ["notification"],
+  data: function () {
+    return { timer: null };
+  },
+  created() {
+    let timeout = this.notification.timeout;
+    this.timer = setTimeout(
+      function () {
+        console.log(this.notification.id);
+        this.triggerRemove(this.notification);
+      }.bind(this),
+      timeout
+    );
+  },
+  methods: {
+    triggerRemove(notification) {
+      clearTimeout(this.timer);
+      this.$emit("triggerClose", notification);
+    },
+  },
 };
 </script>
 <style>

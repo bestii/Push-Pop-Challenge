@@ -131,7 +131,6 @@ export default {
       @param(logging): Boolean that denotes if the action needs to be logged.
     */
     moveTickets(ticket, logging = true) {
-      console.log(ticket);
       let final_list;
       switch (ticket.type) {
         case this.LIST_RESOLVED:
@@ -198,15 +197,15 @@ export default {
       }
     },
     notify(msg) {
-      console.log("called")
       this.notifications.push({
         id: Date.now(),
         title: "Notification",
-        text: msg
+        text: msg,
+        timeout: 3000
       })
     },
-    removeNotification() {
-
+    removeNotification(notification) {
+      this.notifications = this.notifications.filter(item => item.id != notification.id);
     }
   },
 };

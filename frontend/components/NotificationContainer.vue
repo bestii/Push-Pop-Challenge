@@ -1,7 +1,9 @@
 <template lang="">
   <div class="notifications fixed w-2/12 z-50">
     <notification-element v-for="notification in notifications" 
-      :notification="notification" :key="notification.index" />
+      :notification="notification" 
+      @triggerClose="triggerClose($event)"
+      :key="notification.id" />
   </div>
 </template>
 <script>
@@ -12,6 +14,11 @@ export default {
     NotificationElement,
   },
   props: ["notifications"],
+  methods: {
+    triggerClose: function (notification) {
+      this.$emit("removeNotification", notification);
+    },
+  },
 };
 </script>
 <style>
