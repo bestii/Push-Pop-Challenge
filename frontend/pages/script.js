@@ -138,20 +138,24 @@ export default {
           final_list = this.LIST_UNRESOLVED;
           this.resolved = this.resolved.filter(item => item.code != ticket.item.code);
           this.unresolved.push(ticket.item);
+          this.notify(`Moved ${ticket.item.code} to unresolved.`);
           break;
         case this.LIST_UNRESOLVED:
           final_list = this.LIST_RESOLVED;
           this.unresolved = this.unresolved.filter(item => item.code != ticket.item.code);
           this.resolved.push(ticket.item);
+          this.notify(`Moved ${ticket.item.code} to resolved.`);
           break;
         case this.LIST_BACKLOG:
           final_list = this.LIST_UNRESOLVED;
           this.backlog = this.backlog.filter(item => item.code != ticket.item.code);
           this.unresolved.push(ticket.item);
+          this.notify(`Moved ${ticket.item.code} to unresolved.`);
           break;
         case this.LIST_UNDOBACKLOG:
           this.unresolved = this.unresolved.filter(item => item.code != ticket.item.code);
           this.backlog.push(ticket.item);
+          this.notify(`Moved ${ticket.item.code} to backlog.`);
           break;
       }
       if (logging && ticket.type != this.LIST_UNDOBACKLOG) {
@@ -193,12 +197,12 @@ export default {
         this.moveTickets(ticket, false);
       }
     },
-    notify() {
+    notify(msg) {
       console.log("called")
       this.notifications.push({
         id: Date.now(),
         title: "Notification",
-        text: "Hello!"
+        text: msg
       })
     },
     removeNotification() {
