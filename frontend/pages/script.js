@@ -2,6 +2,7 @@
 import listTable from '../components/ListTable';
 import StatusBar from '../components/StatusBar';
 import UndoBtn from '../components/UndoBtn';
+import Notification from '../components/Notification';
 import {
   LIST_BACKLOG,
   LIST_RESOLVED,
@@ -14,7 +15,8 @@ export default {
     // Components used in the page
     listTable,
     StatusBar,
-    UndoBtn
+    UndoBtn,
+    Notification
   },
   async asyncData({
     $axios
@@ -23,8 +25,8 @@ export default {
       const response = await $axios.$get(
         //const { resolved, unresolved, backlog } = await $axios.$get(
         //"http://localhost:8000/get_lists"
-        "https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list" // Mock API to deliver the data.
-        //"http://localhost:3000/data.json"
+        //"https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list" // Mock API to deliver the data.
+        "http://localhost:3000/data.json"
 
       );
       const resolved = response[0].resolved;
@@ -57,6 +59,7 @@ export default {
         Format: {time_stamp, initial_list, final_list, item, code} 
       */
       logArray: [],
+      notifications: [],
       // Constant variables imported from constants.js
       activetab: 1,
       LIST_BACKLOG,
@@ -154,7 +157,6 @@ export default {
       if (logging && ticket.type != this.LIST_UNDOBACKLOG) {
         this.createLog(Date.now(), ticket.type, final_list, ticket.item, ticket.item.code);
       }
-
     },
     /* 
       Name: createLog
@@ -190,6 +192,13 @@ export default {
         }
         this.moveTickets(ticket, false);
       }
+    },
+    notify() {
+      console.log("called")
+      this.notifications.push({
+        title: "Notification",
+        text: "Hello!"
+      })
     }
   },
 };
