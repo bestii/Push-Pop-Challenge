@@ -2,7 +2,7 @@
 import listTable from '../components/ListTable';
 import StatusBar from '../components/StatusBar';
 import UndoBtn from '../components/UndoBtn';
-import Notification from '../components/Notification';
+import NotificationContainer from '../components/NotificationContainer';
 import {
   LIST_BACKLOG,
   LIST_RESOLVED,
@@ -16,7 +16,7 @@ export default {
     listTable,
     StatusBar,
     UndoBtn,
-    Notification
+    NotificationContainer
   },
   async asyncData({
     $axios
@@ -155,7 +155,7 @@ export default {
         case this.LIST_UNDOBACKLOG:
           this.unresolved = this.unresolved.filter(item => item.code != ticket.item.code);
           this.backlog.push(ticket.item);
-          this.notify(`Moved ${ticket.item.code} to backlog.`);
+          // this.notify(`Moved ${ticket.item.code} to backlog.`);
           break;
       }
       if (logging && ticket.type != this.LIST_UNDOBACKLOG) {
