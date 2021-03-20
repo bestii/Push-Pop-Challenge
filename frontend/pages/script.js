@@ -196,9 +196,13 @@ export default {
     notify() {
       console.log("called")
       this.notifications.push({
+        id: Date.now(),
         title: "Notification",
         text: "Hello!"
       })
+    },
+    removeNotification() {
+
     }
   },
 };
