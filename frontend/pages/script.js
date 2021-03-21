@@ -25,8 +25,8 @@ export default {
       const response = await $axios.$get(
         //const { resolved, unresolved, backlog } = await $axios.$get(
         //"http://localhost:8000/get_lists"
-        //"https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list" // Mock API to deliver the data.
-        "http://localhost:3000/data.json"
+        "https://604a7ad59251e100177cec16.mockapi.io/api/v1/get_list" // Mock API to deliver the data.
+        //"http://localhost:3000/data.json"
 
       );
       const resolved = response[0].resolved;
