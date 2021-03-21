@@ -32,21 +32,26 @@
 <script>
 export default {
   name: "NotificationElement",
+  // Notification Object
   props: ["notification"],
   data: function () {
     return { timer: null };
   },
+  // Lifecycle method
   created() {
+    // Get the timer for the notification
     let timeout = this.notification.timeout;
+    // Set timeout for each notification created
     this.timer = setTimeout(
       function () {
-        console.log(this.notification.id);
+        // Call triggerRemove when timeout is done.
         this.triggerRemove(this.notification);
       }.bind(this),
       timeout
     );
   },
   methods: {
+    // Function to propagate the remove notification event
     triggerRemove(notification) {
       clearTimeout(this.timer);
       this.$emit("triggerClose", notification);
@@ -62,7 +67,6 @@ export default {
   -o-animation: fadein 2s; /* Opera < 12.1 */
   animation: fadein 2s;
 }
-
 @keyframes fadein {
   from {
     opacity: 0;
@@ -71,5 +75,4 @@ export default {
     opacity: 1;
   }
 }
-
 </style>

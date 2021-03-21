@@ -196,14 +196,23 @@ export default {
         this.moveTickets(ticket, false);
       }
     },
+    /* 
+      Name: notify
+      Description: function to create and push notification to the notification array.
+    */
     notify(msg) {
       this.notifications.push({
+        //Timestamp is the id of the notification
         id: Date.now(),
         title: "Notification",
         text: msg,
         timeout: 3000
       })
     },
+    /* 
+      Name: removeNotification
+      Description: function remove a given notification.
+    */
     removeNotification(notification) {
       this.notifications = this.notifications.filter(item => item.id != notification.id);
     }
