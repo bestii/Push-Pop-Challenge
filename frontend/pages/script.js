@@ -206,7 +206,7 @@ export default {
         id: Date.now(),
         title: "Notification",
         text: msg,
-        timeout: 3000
+        timeout: 4000
       })
     },
     /* 
