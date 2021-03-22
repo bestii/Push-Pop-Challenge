@@ -154,7 +154,7 @@ export default {
         case this.LIST_UNDOBACKLOG:
           this.unresolved = this.unresolved.filter(item => item.code != ticket.item.code);
           this.backlog.push(ticket.item);
-          // this.notify(`Moved ${ticket.item.code} to backlog.`);
+          this.notify(`Moved ${ticket.item.code} to backlog.`);
           break;
       }
       if (logging && ticket.type != this.LIST_UNDOBACKLOG) {
